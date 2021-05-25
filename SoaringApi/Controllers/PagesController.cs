@@ -71,6 +71,11 @@ namespace SoaringApi.Controllers
             {
                 page.Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(page.Title);
 
+                if (string.IsNullOrEmpty(page.MetaTitle))
+                {
+                    page.MetaTitle = page.Title;
+                }
+
                 _context.tbl_Pages.Add(page);
                 _context.SaveChanges();
 
@@ -94,6 +99,11 @@ namespace SoaringApi.Controllers
             else
             {
                 page.Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(page.Title);
+
+                if (string.IsNullOrEmpty(page.MetaTitle))
+                {
+                    page.MetaTitle = page.Title;
+                }
 
                 _context.Update(page);
                 _context.SaveChanges();
