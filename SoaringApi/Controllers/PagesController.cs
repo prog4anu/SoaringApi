@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace SoaringApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PagesController : Controller
     {
         private readonly SDCMSApiContext _context;

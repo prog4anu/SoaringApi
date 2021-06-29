@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SoaringApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UploadController : Controller
     {

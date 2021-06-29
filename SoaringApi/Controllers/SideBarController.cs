@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoaringApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class SideBarController : Controller
     {
         private readonly SDCMSApiContext _context;
