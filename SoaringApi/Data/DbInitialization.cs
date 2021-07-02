@@ -45,7 +45,7 @@ namespace SoaringApi.Data
             {
                 UserName = "Admin",
                 Password = "test",
-                IsAdmin = false
+                IsAdmin = 0
             };
 
             context.tbl_Users.Add(user);

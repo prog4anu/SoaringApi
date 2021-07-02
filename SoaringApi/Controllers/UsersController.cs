@@ -42,19 +42,28 @@ namespace SoaringApi.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] User user)
         {
-            var username = _context.tbl_Users.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password);
-
-            if (username != null)
+            try
             {
-                return Json(user.UserName);
-            }
-            else
-            {
-                _context.tbl_Users.Add(user);
-                _context.SaveChanges();
+                var username = _context.tbl_Users.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password);
 
-                return Json("InvalidUser");
+                if (username != null)
+                {
+                    return Json(username.UserName);
+                }
+                else
+                {
+                    _context.tbl_Users.Add(user);
+                    _context.SaveChanges();
+
+                    return Json("InvalidUser");
+                }
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+
         }
     }
 }
