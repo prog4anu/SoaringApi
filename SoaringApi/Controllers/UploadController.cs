@@ -31,7 +31,7 @@ namespace SoaringApi.Controllers
                 //var file = Request.Form.Files[0];
                 var formCollection = await Request.ReadFormAsync();
                 var file = formCollection.Files.First();
-                var folderName = Path.Combine("Resources", "Images");
+                var folderName = Path.Combine("Logo");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 if (file.Length > 0)
                 {

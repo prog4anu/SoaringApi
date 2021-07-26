@@ -30,7 +30,12 @@ namespace SoaringApi.Controllers
         [HttpGet("{slug}")]
         public IActionResult Index(string slug)
         {
-            var page = _context.tbl_Pages.SingleOrDefault(x => x.Slug == slug);
+            var page = _context.tbl_Pages.SingleOrDefault(x => x.PageLink.ToLower() == slug.ToLower());
+
+            if (page == null)
+            {
+                page = _context.tbl_Pages.SingleOrDefault(x => x.Slug == slug);
+            }
 
             if (page == null)
             {
@@ -71,6 +76,11 @@ namespace SoaringApi.Controllers
             {
                 page.Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(page.Title);
 
+                if (string.IsNullOrEmpty(page.PageLink))
+                {
+                    page.PageLink = page.Slug.ToLower().Replace(" ", "-");
+                }
+
                 if (string.IsNullOrEmpty(page.MetaTitle))
                 {
                     page.MetaTitle = page.Title;
@@ -103,6 +113,11 @@ namespace SoaringApi.Controllers
                 if (string.IsNullOrEmpty(page.MetaTitle))
                 {
                     page.MetaTitle = page.Title;
+                }
+
+                if (string.IsNullOrEmpty(page.PageLink))
+                {
+                    page.PageLink = page.Slug.ToLower().Replace(" ", "-");
                 }
 
                 _context.Update(page);

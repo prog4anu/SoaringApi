@@ -25,6 +25,12 @@ namespace SoaringApi.Controllers
         public IActionResult Index()
         {
             List<Menu> pages = _context.tbl_Menu.ToList();
+
+            foreach (var item in pages)
+            {
+                item.PageLink = _context.tbl_Pages.SingleOrDefault(x => x.PageId == item.MenuPageId).PageLink;
+            }
+
             return Json(pages);
         }
 
@@ -37,6 +43,10 @@ namespace SoaringApi.Controllers
             if (menu == null)
             {
                 return Json("PageNotFound");
+            }
+            else
+            {
+                menu.PageLink = _context.tbl_Pages.SingleOrDefault(x => x.PageId == menu.MenuPageId).PageLink;
             }
 
             return Json(menu);
@@ -52,6 +62,13 @@ namespace SoaringApi.Controllers
             {
                 return Json("PageNotFound");
             }
+            else
+            {
+                foreach(var item in menu)
+                {
+                    item.PageLink = _context.tbl_Pages.SingleOrDefault(x => x.PageId == item.SubMenuPageId).PageLink;
+                }
+            }
 
             return Json(menu);
         }
@@ -65,6 +82,10 @@ namespace SoaringApi.Controllers
             if (menu == null)
             {
                 return Json("PageNotFound");
+            }
+            else
+            {
+                menu.PageLink = _context.tbl_Pages.SingleOrDefault(x => x.PageId == menu.SubMenuPageId).PageLink;
             }
 
             return Json(menu);

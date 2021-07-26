@@ -14,6 +14,7 @@ namespace SoaringApi.Models
         public int MenuPageId { get; set; }
         public bool ShowMenu { get; set; }
         public bool ShowSubMenu { get; set; }
+        public string PageLink { get; set; }
     }
 
     public class SubMenu
@@ -24,5 +25,6 @@ namespace SoaringApi.Models
         public int ParentMenuId { get; set; }
         public int SubMenuPageId { get; set; }
         public bool ShowSubMenu { get; set; }
+        public string PageLink { get; set; }
     }
 }
