@@ -19,5 +19,6 @@ namespace SoaringApi.Data
         public DbSet<User> tbl_Users { get; set; }
         public DbSet<Menu> tbl_Menu { get; set; }
         public DbSet<SubMenu> tbl_SubMenu { get; set; }
+        public DbSet<Footer> tbl_Footer { get; set; }
     }
 }
